@@ -4,17 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.l4digital.fastscroll.FastScrollRecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.l4digital.fastscroll.FastScrollView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -27,7 +29,8 @@ import io.reactivex.schedulers.Schedulers;
 public class MultiAppPickerActivity extends AppCompatActivity implements MaterialSearchView.OnQueryTextListener {
 
     public static final String EXTRA_RESULT_SELECTION = "extra_result_selection";
-    private FastScrollRecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private FastScrollView fastScrollView;
     private List<Application> applicationList = new ArrayList<>();
     private TextView tvSelectBtn;
     private com.mcsoft.multiapppicker.MultiAppPickerAdapter adapter;
@@ -52,7 +55,8 @@ public class MultiAppPickerActivity extends AppCompatActivity implements Materia
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         tvSelectBtn = (TextView) findViewById(R.id.tvSelect);
-        recyclerView = (FastScrollRecyclerView) findViewById(R.id.recyclerView);
+        fastScrollView = (FastScrollView) findViewById(R.id.recyclerView);
+        recyclerView = fastScrollView.getRecyclerView();
         initialiseUI(builder);
 
         if(getSupportActionBar() != null) {
@@ -94,15 +98,15 @@ public class MultiAppPickerActivity extends AppCompatActivity implements Materia
         setSupportActionBar(toolbar);
         searchView.setOnQueryTextListener(this);
         if(builder.bubbleColor != 0)
-            recyclerView.setBubbleColor(builder.bubbleColor);
+            fastScrollView.getFastScroller().setBubbleColor(builder.bubbleColor);
         if(builder.handleColor != 0)
-            recyclerView.setHandleColor(builder.handleColor);
+            fastScrollView.getFastScroller().setHandleColor(builder.handleColor);
         if(builder.bubbleTextColor != 0)
-            recyclerView.setBubbleTextColor(builder.bubbleTextColor);
+            fastScrollView.getFastScroller().setBubbleTextColor(builder.bubbleTextColor);
         if(builder.trackColor != 0)
-            recyclerView.setTrackColor(builder.trackColor);
-        recyclerView.setHideScrollbar(builder.hideScrollbar);
-        recyclerView.setTrackVisible(builder.showTrack);
+            fastScrollView.getFastScroller().setTrackColor(builder.trackColor);
+        fastScrollView.getFastScroller().setHideScrollbar(builder.hideScrollbar);
+        fastScrollView.getFastScroller().setTrackVisible(builder.showTrack);
     }
 
     @Override

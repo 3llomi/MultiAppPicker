@@ -3,9 +3,10 @@ package com.mcsoft.multiapppicker;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.StyleRes;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
 
 import java.io.Serializable;
 import java.util.ArrayList;

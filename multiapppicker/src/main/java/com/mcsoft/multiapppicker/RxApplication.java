@@ -6,8 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.util.LongSparseArray;
+
+import androidx.annotation.NonNull;
 
 import java.util.Collections;
 import java.util.List;
